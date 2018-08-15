@@ -5,6 +5,7 @@ public class LLImpl {
 	int data;
 	LLImpl next;
 	LLImpl head;
+	LLImpl head2;
 	LLImpl(){}
 	
 	LLImpl(int data){
@@ -44,6 +45,22 @@ public void rotateLL(int k) {
 		
 		impl.next=head;
 		head=impl;
+		
+		}
+		
+	}
+	public void insertLLHead2(int data) {
+		
+		
+		if(head2==null) {
+			
+			head2=new LLImpl(data);
+		}else {
+		
+		LLImpl impl=new LLImpl(data);
+		
+		impl.next=head2;
+		head2=impl;
 		
 		}
 		
@@ -88,6 +105,22 @@ public void rotateLL(int k) {
 	}
 	
 	
+public void printLL2() {
+		
+		
+		
+		LLImpl printNode=head2;
+		if(printNode==null) {
+			
+			System.out.println("Empty Linked List");
+		}
+		
+		while(printNode != null) {
+			
+			System.out.println(printNode.data);
+			printNode=printNode.next;
+		}
+	}
 public void rotateKNodes(int k) {
 
 	
@@ -130,6 +163,71 @@ public void rotateKNodes(int k) {
 	
 	
 }	
+LLImpl MergeLists() {
+	LLImpl s=null;
+	LLImpl k=null;
+	
+	int count=0;
+    LLImpl p=head;
+    LLImpl q=head2;
+    while(p!=null || q!=null){
+      
+        if(p.data<=q.data){
+        	
+        	if(count==0) {
+                s=p;
+                k=p;
+             	}else {
+             		
+             		s.next=p;
+             		s=s.next;
+             	}
+          
+            p=p.next;
+            
+         
+            
+           
+      
+            
+        }else if(q.data<p.data) {
+          
+        	if(count==0) {
+           s=q;
+           k=q;
+        	}else {
+        		
+        		s.next=q;
+        		s=s.next;
+        	}
+          
+           q=q.next;
+          
+          
+          
+          
+        }
+        count++;
+        if(p==null) {
+        
+        	s.next=q;
+        	//System.out.println(s.data);
+        	break;
+        }else if(q==null) {
+        	
+        	s.next=p;
+        	//System.out.println(s.data);
+        	break;
+        }
+        
+      
+ 
+        
+    }
+ return k;
+    
+   } 
+
 	
 public static void main(String[] args) {
 	
@@ -142,16 +240,18 @@ public static void main(String[] args) {
 	ll.insertLLHead(9);*/
 	
 	ll.insertLLTail(1);
-	ll.insertLLTail(2);
-	ll.insertLLTail(3);
-	ll.insertLLTail(4);
-	ll.insertLLTail(5);
-	ll.insertLLTail(6);
-	ll.insertLLTail(7);
-	ll.insertLLTail(8);
+
+	ll.insertLLTail(1);
+	
+	//ll.insertLLHead2(5);
+	ll.insertLLHead2(4);
+	ll.insertLLHead2(2);
+	
+LLImpl ll1=	ll.MergeLists();
+System.out.println(ll1.data+"->"+ll1.next.data+"->"+ll1.next.next.data);
 	//ll.rotateLL(2);
-	ll.rotateKNodes(3);
-	ll.printLL();
+	//ll.rotateKNodes(3);
+	//ll.printLL();
 	
 }	
 	
